@@ -48,4 +48,22 @@ defmodule FlightBookingExcoveralls.Bookings.AgentTest do
       assert response == expected_response
     end
   end
+
+  describe "get_all/0" do
+    test "List all bookings" do
+      BookingAgent.start_link()
+
+      :booking
+      |> build()
+      |> BookingAgent.save()
+
+      response =
+        BookingAgent.get_all()
+        |> Enum.count()
+
+      expected_response = 1
+
+      assert expected_response == response
+    end
+  end
 end

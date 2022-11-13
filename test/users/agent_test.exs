@@ -46,4 +46,22 @@ defmodule FlightBookingExcoveralls.Users.AgentTest do
       assert response == expected_response
     end
   end
+
+  describe "get_all/0" do
+    test "List all users" do
+      UserAgent.start_link()
+
+      :user
+      |> build()
+      |> UserAgent.save()
+
+      response =
+        UserAgent.get_all()
+        |> Enum.count()
+
+      expected_response = 1
+
+      assert expected_response == response
+    end
+  end
 end
